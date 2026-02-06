@@ -760,7 +760,7 @@ function CalendarWidget() {
                                 <p>
                                     to do,
                                     <br />- idate ang baby kong maganda, hopefully this day or whenever
-                                    she's free
+                                    she&apos;s free
                                     <br />
                                     - either sa cubao expo since she misses the chili peanut noodles
                                     there or eastwood kasi she mentioned she wants to go walk there
@@ -771,7 +771,7 @@ function CalendarWidget() {
                                 <p>
                                     Anniversary day!
                                     <br />
-                                    - i-date si llana my love so sweet sa tito boy's
+                                    - i-date si llana my love so sweet sa tito boy&apos;s
                                     <br />
                                     - wag kalimutan yung ano
                                 </p>

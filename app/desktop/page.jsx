@@ -218,6 +218,7 @@ export default function Desktop() {
             setSelectedImage({ path: lastPhoto, index: lastIndex })
             setZoomLevel(1)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedImage, PHOTO_IMAGE_BASES, images])
 
     const handleNextPhoto = useCallback(() => {
@@ -235,6 +236,7 @@ export default function Desktop() {
             setSelectedImage({ path: firstPhoto, index: firstIndex })
             setZoomLevel(1)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedImage, PHOTO_IMAGE_BASES, images])
 
     const handleWheel = (e) => {
@@ -452,6 +454,7 @@ export default function Desktop() {
 
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedImage, handlePrevPhoto, handleNextPhoto, closeModal, PHOTO_IMAGE_BASES])
 
     // Auto-lock after inactivity (3 minutes)

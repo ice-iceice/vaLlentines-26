@@ -146,7 +146,7 @@ export default function LetterPage() {
                                         className="letter-button button-4"
                                         onClick={handleThinkAgainClick}
                                     >
-                                        okay, i'll think about it again
+                                        okay, i&apos;ll think about it again
                                     </button>
                                 </div>
                             </div>
