@@ -86,13 +86,11 @@ export default function LockScreen() {
                 e.preventDefault()
                 handleBackspace()
             } else if (e.key === 'Escape') {
-                // Escape key resets to initial screen
                 e.preventDefault()
                 setShowInput(false)
                 setPassword('')
                 setError('')
             } else {
-                // Any other key resets to initial screen
                 setShowInput(false)
                 setPassword('')
                 setError('')
@@ -101,6 +99,8 @@ export default function LockScreen() {
 
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
+        // Intentionally omit handleKeypadPress/handleBackspace to avoid re-subscribing every render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showInput, password, error])
 
     const keypadRows = [

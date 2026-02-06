@@ -132,61 +132,18 @@ export default function Desktop() {
 
     // Array of image identifiers - uses p1, p2, p3, etc. with exceptions: letter and location
     // Photo locations shown when Photos is open (files in public/photos/, thumbnails in public/thumbnails/)
-    const PHOTO_IMAGE_BASES = [
+    const PHOTO_IMAGE_BASES = useMemo(() => [
         '/location eastwood',
         '/location cubao',
-        '/a',
-        '/b',
-        '/c',
-        '/d',
-        '/e',
-        '/f',
-        '/g',
-        '/h',
-        '/i',
-        '/j',
-        '/k',
-        '/l',
-        '/m',
-        '/n',
-        '/o',
-        '/p',
-        '/q',
-        '/r',
-    ]
+        '/a', '/b', '/c', '/d', '/e', '/f', '/g', '/h', '/i', '/j', '/k', '/l', '/m', '/n', '/o', '/p', '/q', '/r',
+    ], [])
 
     // To add new images: just add them here and put the files in public/thumbnails/ and public/images/ (or public/photos/ for location*)
-    const images = [
-        '/p1',      // Thumbnail: thumbnails/p1.png | Full: images/p1.png
-        '/letter',  // Thumbnail: thumbnails/letter.png | Full: images/letter.png
-        '/p2',      // Thumbnail: thumbnails/p2.png | Full: images/p2.png
-        '/p3',      // Thumbnail: thumbnails/p3.png | Full: images/p3.png
-        '/location', // Thumbnail: thumbnails/location.png | Full: images/location.png
-        '/location eastwood', // Thumbnail: thumbnails/location eastwood.png | Full: photos/location eastwood.png
-        '/location cubao',    // Thumbnail: thumbnails/location cubao.png | Full: photos/location cubao.png
-        '/p4',      // Thumbnail: thumbnails/p4.png | Full: images/p4.png
-        '/p5',      // Thumbnail: thumbnails/p5.png | Full: images/p5.png
-        '/p6',      // Thumbnail: thumbnails/p6.png | Full: images/p6.png
-        '/p7',      // Thumbnail: thumbnails/p7.png | Full: images/p7.png
-        '/a',       // Thumbnail: thumbnails/a.png | Full: photos/a.png
-        '/b',       // Thumbnail: thumbnails/b.png | Full: photos/b.png
-        '/c',       // Thumbnail: thumbnails/c.png | Full: photos/c.png
-        '/d',       // Thumbnail: thumbnails/d.png | Full: photos/d.png
-        '/e',       // Thumbnail: thumbnails/e.png | Full: photos/e.png
-        '/f',       // Thumbnail: thumbnails/f.png | Full: photos/f.png
-        '/g',       // Thumbnail: thumbnails/g.png | Full: photos/g.png
-        '/h',       // Thumbnail: thumbnails/h.png | Full: photos/h.png
-        '/i',       // Thumbnail: thumbnails/i.png | Full: photos/i.png
-        '/j',       // Thumbnail: thumbnails/j.png | Full: photos/j.png
-        '/k',       // Thumbnail: thumbnails/k.png | Full: photos/k.png
-        '/l',       // Thumbnail: thumbnails/l.png | Full: photos/l.png
-        '/m',       // Thumbnail: thumbnails/m.png | Full: photos/m.png
-        '/n',       // Thumbnail: thumbnails/n.png | Full: photos/n.png
-        '/o',       // Thumbnail: thumbnails/o.png | Full: photos/o.png
-        '/p',       // Thumbnail: thumbnails/p.png | Full: photos/p.png
-        '/q',       // Thumbnail: thumbnails/q.png | Full: photos/q.png
-        '/r',       // Thumbnail: thumbnails/r.png | Full: photos/r.png
-    ]
+    const images = useMemo(() => [
+        '/p1', '/letter', '/p2', '/p3', '/location', '/location eastwood', '/location cubao',
+        '/p4', '/p5', '/p6', '/p7',
+        '/a', '/b', '/c', '/d', '/e', '/f', '/g', '/h', '/i', '/j', '/k', '/l', '/m', '/n', '/o', '/p', '/q', '/r',
+    ], [])
 
     // Base positions for thumbnails (no randomization), all well inside the desktop margin
     // Desktop has 5% margin, so inner box is 5% to 95% - positions stay inside that range
@@ -261,7 +218,7 @@ export default function Desktop() {
             setSelectedImage({ path: lastPhoto, index: lastIndex })
             setZoomLevel(1)
         }
-    }, [selectedImage])
+    }, [selectedImage, PHOTO_IMAGE_BASES, images])
 
     const handleNextPhoto = useCallback(() => {
         if (!selectedImage) return
@@ -278,7 +235,7 @@ export default function Desktop() {
             setSelectedImage({ path: firstPhoto, index: firstIndex })
             setZoomLevel(1)
         }
-    }, [selectedImage])
+    }, [selectedImage, PHOTO_IMAGE_BASES, images])
 
     const handleWheel = (e) => {
         if (selectedImage) {
@@ -495,7 +452,7 @@ export default function Desktop() {
 
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [selectedImage, handlePrevPhoto, handleNextPhoto, closeModal])
+    }, [selectedImage, handlePrevPhoto, handleNextPhoto, closeModal, PHOTO_IMAGE_BASES])
 
     // Auto-lock after inactivity (3 minutes)
     useEffect(() => {
